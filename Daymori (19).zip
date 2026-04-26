@@ -1,0 +1,17 @@
+export interface SmartBreakdownInput {
+  goalTitle: string;
+  durationDays: number;
+}
+
+export const buildSmartBreakdown = (input: SmartBreakdownInput): string[] => {
+  const { goalTitle, durationDays } = input;
+  const weeklyStep = Math.max(1, Math.floor(durationDays / 7));
+
+  return [
+    `S(具体): 明确目标为“${goalTitle}”，写下可量化结果。`,
+    `M(可衡量): 每天记录一次关键指标，连续追踪${durationDays}天。`,
+    `A(可实现): 将任务拆为每周${weeklyStep}个小行动。`,
+    'R(相关性): 每个行动直接服务核心目标，删除无关任务。',
+    `T(时限): 设置阶段里程碑并在第${Math.min(durationDays, 7)}天进行首次复盘。`
+  ];
+};
